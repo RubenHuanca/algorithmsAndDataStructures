@@ -24,6 +24,15 @@ class List {
             head = x;
             x->prev = NULL;
         }
+        
+        void push_from(int myKey){
+            node *n = (node*) malloc(sizeof(node)); // cast return of malloc()
+            n->key = myKey;
+            n->next = NULL;
+            n->prev = NULL;            
+
+            listInsert(n);
+        }
 
         void printList(){
             for(node *tmp = head; tmp!=NULL; tmp = tmp->next){
@@ -41,22 +50,15 @@ class List {
             }
         }
 
-        node* createNode(int myKey){
-            node *n = (node*) malloc(sizeof(node)); // in C++, we need to cast the return of malloc()
-            n->key = myKey;
-            n->next = NULL;
-            n->prev = NULL;
-            return n;
-        }
 };
 
 int main(){
     List list;
 
-    list.listInsert(list.createNode(1));
-    list.listInsert(list.createNode(2));
-    list.listInsert(list.createNode(3));
-    list.listInsert(list.createNode(4));
+    list.push_from(1);
+    list.push_from(2);
+    list.push_from(3);
+    list.push_from(4);    
    
     list.printList();
     return 0;
