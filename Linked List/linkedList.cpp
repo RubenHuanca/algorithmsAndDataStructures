@@ -15,15 +15,6 @@ class List {
     node *head = NULL;
 
     public:
-
-        void listInsert(node *x){
-            x->next = head;
-            if(head != NULL){
-                head->prev = x;
-            }
-            head = x;
-            x->prev = NULL;
-        }
         
         void push_from(int myKey){
             node *n = (node*) malloc(sizeof(node)); // cast return of malloc()
@@ -32,6 +23,15 @@ class List {
             n->prev = NULL;            
 
             listInsert(n);
+        }
+
+        void listInsert(node *x){
+            x->next = head;
+            if(head != NULL){
+                head->prev = x;
+            }
+            head = x;
+            x->prev = NULL;
         }
 
         void printList(){
