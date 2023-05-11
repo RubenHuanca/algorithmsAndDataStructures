@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <fstream>
 using namespace std;
 
 typedef struct node
@@ -38,8 +39,7 @@ class List {
             for(node *tmp = head; tmp!=NULL; tmp = tmp->next){
                 cout<<tmp->key<<endl;
             }
-            
-            freeList();
+            graphList();
         }
 
         void freeList(){
@@ -47,6 +47,27 @@ class List {
                 node *tmp = head->next;
                 free(head);
                 head = tmp;
+            }
+        }
+
+        // Create and save the input.dot file for the Graph
+        void graphList(){
+            ofstream myfile("input.dot");            
+            if( myfile.is_open() ){
+                myfile << "digraph {\n";
+                for(node *tmp = head; tmp!=NULL; tmp = tmp->next){                    
+                    if( tmp->next == NULL){
+                        cout<<tmp->key<<" -> "<<"NULL"<<endl;
+                        myfile<<tmp->key<<" -> "<<"NULL"<<" \n";                        
+                    }else{
+                        cout<<tmp->key<<" -> "<<(tmp->next)->key<<endl;
+                        myfile<<tmp->key<<" -> "<<(tmp->next)->key<<" \n";
+                    }
+                }
+                myfile << "} \n";
+                myfile.close();
+            }else{
+                cout<<"Unable to open file. \n";
             }
         }
 
@@ -58,8 +79,9 @@ int main(){
     list.push_from(1);
     list.push_from(2);
     list.push_from(3);
-    list.push_from(4);    
-   
+    list.push_from(4);
+
     list.printList();
+    list.freeList();
     return 0;
 }
