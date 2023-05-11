@@ -18,7 +18,7 @@ class List {
     public:
         
         void push_from(int myKey){
-            node *n = (node*) malloc(sizeof(node)); // cast return of malloc()
+            node *n = (node*) malloc(sizeof(node)); // cast in C++
             n->key = myKey;
             n->next = NULL;
             n->prev = NULL;            
@@ -50,11 +50,11 @@ class List {
             }
         }
 
-        // Create and save the input.dot file for the Graph
+        // Create and save the input.dot for the Graph
         void graphList(){
-            ofstream myfile("input.dot");            
+            ofstream myfile("input.dot");
             if( myfile.is_open() ){
-                myfile << "digraph {\n";
+                myfile << "digraph { \n";
                 for(node *tmp = head; tmp!=NULL; tmp = tmp->next){                    
                     if( tmp->next == NULL){
                         cout<<tmp->key<<" -> "<<"NULL"<<endl;
@@ -64,7 +64,7 @@ class List {
                         myfile<<tmp->key<<" -> "<<(tmp->next)->key<<" \n";
                     }
                 }
-                myfile << "} \n";
+                myfile << "}";
                 myfile.close();
             }else{
                 cout<<"Unable to open file. \n";
@@ -83,5 +83,8 @@ int main(){
 
     list.printList();
     list.freeList();
+
+    // To generate a Graph from input.dot
+    // system("dot -Tsvg input.dot > output.svg");
     return 0;
 }
