@@ -1,6 +1,6 @@
-## Run this to generate the Graph
+## Using Class templates
 
-Using Class templates
+## Run this to generate the Graph
 
 dot -Tsvg input.dot > output.svg && dot -Tsvg input2.dot > output2.svg
 
