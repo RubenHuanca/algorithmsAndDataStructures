@@ -1,4 +1,7 @@
 ## Run this to generate the Graph
+
+Using Class templates
+
 dot -Tsvg input.dot > output.svg && dot -Tsvg input2.dot > output2.svg
 
 ![Linked List](https://github.com/RubenHuanca/algorithmsAndDataStructures/blob/main/Linked%20List/output.svg "My Linked List using Graphviz")
